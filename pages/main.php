@@ -1,3 +1,4 @@
+
 <!DOCTYPE>
 <html>
 <head>
@@ -68,16 +69,16 @@
           <th>Last name</th>
           <th>Email</th>
           <th>Role</th>
+    
           <!-- <th>Photo</th> -->
         </tr>
         <?php
-        require_once('connection.php');
-        $sql = "SELECT *  FROM `users` ";
-
+        require_once "connection.php";
+        
+        $sql = "SELECT * FROM users u LEFT JOIN roles r ON u.role_id = r.role_id";
         $result = $conn->query($sql);
 
-        if ($result-> num_rows > 0) {
-            // output data of each row
+          if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>";
@@ -94,7 +95,7 @@
               echo "<td>".$row['first_name']." "."</td>";
               echo "<td>".$row['last_name']." "."</td>";
               echo "<td>".$row['email']." "."</td>";
-              echo "<td>".$row['role_id']." "."</td>";
+              echo "<td>".$row['title']." "."</td>";
               //echo "<td>"."<img  width =30% src=../public/images/".$row['photo']."></td>";
               echo "</tr><br>";
             }
